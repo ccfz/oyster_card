@@ -27,8 +27,11 @@ class Oystercard
     deduct_fare
   end
 
-  private
+  def log
+    @journeylog.journeys
+  end
 
+  private
   attr_reader :balance
 
   def deduct_fare

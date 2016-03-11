@@ -1,7 +1,6 @@
 require 'journeylog'
 
 describe Journeylog do
-
   let(:journey) { double(:Journey, start: nil, finish: nil, fare: Journey::MIN_FARE) }
   let(:journey_class) { double(:Journey_class, new: journey) }
   subject(:journeylog) { described_class.new(journey_klass: journey_class) }
@@ -33,7 +32,6 @@ describe Journeylog do
       journeylog.start(station)
       expect(journeylog.journeys).to include(journey)
     end
-
   end
 
   describe '#finish' do
@@ -41,17 +39,13 @@ describe Journeylog do
       expect(journey).to receive(:finish).with(station)
       journeylog.finish(station)
     end
-
-
   end
 
   describe '#journeys' do
-
     it 'it stores journeys' do
       journeylog.finish(station)
       expect(journeylog.journeys).to include(journey)
     end
-
   end
 
   describe '#fare' do
@@ -59,8 +53,6 @@ describe Journeylog do
       journeylog.finish(station)
       expect(journeylog.fare).to eq (journey.fare)
     end
-
   end
-
 end
 # test how fare reset

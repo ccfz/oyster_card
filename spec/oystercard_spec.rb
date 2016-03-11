@@ -1,12 +1,12 @@
 require 'oystercard'
 
 describe Oystercard do
-
   let(:journeylog_class) { double(:Journeylog_class, new: journeylog) }
   let(:journeylog) {double(:Journeylog, start: nil, finish: nil, fare: Journey::MIN_FARE) }
   subject(:card) { described_class.new(journeylog_class) }
   let(:entrance_stat) { double(:station) }
   let(:exit_stat) { double(:station) }
+
   describe 'Balance' do
     it 'starts with a balance of 0' do
       expect(card.check_balance).to eq Oystercard::DEFAULT_BALANCE
@@ -68,5 +68,7 @@ describe Oystercard do
   #     expect(card.history).to include(journey)
   #   end
   # end
+
+  ######### TEST #LOG
 
 end
