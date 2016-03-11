@@ -3,22 +3,36 @@ require 'journey'
 
 describe Journey do
 
-let(:aldgate) {double(:station)}
-let(:kings_cross) {double(:station)}
-let(:card) {double(:card, entrance: kings_cross, exit: aldgate)}
+  subject(:journey) {described_class.new}
+  let(:station) {double(:Station)}
+  
 
+  describe '#start' do
 
-    xit 'should know the journey start' do
-      expect(subject.start(card.entrance)).to eq kings_cross
+    it 'should set the journey start' do
+      journey.start(station)
+      expect(journey.entrance).to eq station
+    end
+  end
+
+  describe '#finish' do
+    it 'should know the journey end' do
+      journey.finish(station)
+      expect(journey.end_stat).to eq station
+    end
+  end    
+    
+  describe '#fare' do
+    it 'should calculate a price for complete journey' do
+      journey.start(station)
+      journey.finish(station)
+      expect(subject.fare).to eq Journey::MIN_FARE
     end
 
-    xit 'should know the journey end' do
-      expect(subject.end(card.exit)).to eq aldgate
+    it 'should charge pen_fare for no-start-station journey' do
+      journey.finish(station)
+      expect(subject.fare).to eq Journey::
     end
 
-  describe 'Price' do
-    xit 'should calculate a price for a journey' do
-      expect(subject.fare).to eq 1
-    end
   end
 end

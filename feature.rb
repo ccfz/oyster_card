@@ -21,15 +21,15 @@ oyster.touch_in(aldgate)
 
 oyster.touch_in(kings_cross)
 
-oyster.check_balance
+#oyster.check_balance
 
 
 
-oyster.touch_out(aldgate)
+#oyster.touch_out(aldgate)
 
-oyster.touch_out(kings_cross)
+#oyster.touch_out(kings_cross)
 
-p oyster.check_balance
+#p oyster.check_balance
 
 
 #binding.pry

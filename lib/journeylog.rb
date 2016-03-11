@@ -1,13 +1,19 @@
 require_relative 'journey'
 
-PEN_FARE = 6
+
 
 class Journeylog
+
+attr_reader :fare
+
+
 
   def initialize(journey_klass: Journey)
     @log = []
     @journey_klass = journey_klass
+    @fare = 0
     # @deduct = false
+    
   end
 
   def journeys
@@ -15,31 +21,21 @@ class Journeylog
   end
 
   def start(station)
+    @fare = @journey.fare if @journey
+    @log << @journey if @journey
     current_journey.start(station)
-    # double_touchin if @journey != nil
   end
 
   def finish(station)
-    current_journey.end(station)
-    # store_journey
+    current_journey.finish(station)
+    store_journey
     # @deduct = true
   end
 
-
-  def store_journey
-    # @fare = @journey.complete? ? Journey::MIN_FARE : PEN_FARE
-    # @log << @journey
-    # @journey = nil
-  end
-
-  def double_touchin
+  def double_touch_in
     # current_journey
     # store_journey
     # @deduct = true
-  end
-
-  def fare
-    # @fare
   end
 
   # def deduct?
@@ -50,6 +46,12 @@ private
 
   def current_journey
     @journey || @journey = @journey_klass.new
+  end
+
+  def store_journey
+    @fare = @journey.fare
+    @log << @journey
+    @journey = nil
   end
 
 end
