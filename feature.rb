@@ -22,11 +22,16 @@ p oyster.check_balance
 p oyster.log
 
 p :t3
-oyster.touch_in(kings_cross)
+oyster.touch_in(moorgate)
 p oyster.check_balance
 p oyster.log
 
 p :t4
+oyster.touch_out(kings_cross)
+p oyster.check_balance
+p oyster.log
+
+p :t5
 oyster.touch_out(moorgate)
 p oyster.check_balance
 p oyster.log

@@ -7,6 +7,7 @@ class Journeylog
     @log = []
     @journey_klass = journey_klass
     @fare = 0
+    @temp = nil
   end
 
   def journeys
@@ -23,13 +24,23 @@ class Journeylog
     store_journey
   end
 
+  def fare
+    if @temp == @log.last
+      @fare = 0
+    else
+      @fare = @log.last.fare
+      @temp = @log.last
+    end
+    @fare
+  end
+
 private
   def current_journey
     @journey || @journey = @journey_klass.new
   end
 
   def store_journey
-    @fare = @journey.fare
+    # @fare = @journey.fare
     @log << @journey
     @journey = nil
   end
