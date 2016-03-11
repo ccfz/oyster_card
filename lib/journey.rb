@@ -5,6 +5,7 @@ class Journey
 
   def start(station)
     @entrance = station
+
   end
 
   def finish(station)
@@ -12,6 +13,10 @@ class Journey
   end
 
   def fare
-    @end_stat && @entrance ? MIN_FARE : PEN_FARE
+    @end_stat && @entrance ? fare_price : PEN_FARE
+  end
+
+  def fare_price
+    (@end_stat.zone - entrance.zone).abs +  MIN_FARE
   end
 end
