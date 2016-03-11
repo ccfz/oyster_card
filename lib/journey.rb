@@ -1,6 +1,7 @@
 class Journey
 
 PRICE_PER_ZONE = 1
+MIN_FARE = 1
 
 attr_reader :entrance, :exit
   def initialize

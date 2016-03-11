@@ -4,55 +4,52 @@ PEN_FARE = 6
 
 class Journeylog
 
-  attr_accessor :deduct
-  
-  def journeys
-    @log
+  def initialize(journey_klass: Journey)
+    @log = []
+    @journey_klass = journey_klass
+    # @deduct = false
   end
 
-  def initialize
-    @log = []
-    @deduct = false
+  def journeys
+    @log.dup
   end
 
   def start(station)
-    edge_case if @journey != nil
-    current_journey
-    @journey.start(station)
+    current_journey.start(station)
+    # double_touchin if @journey != nil
   end
 
   def finish(station)
-    current_journey if @journey == nil
-    @journey.end(station)
-    store_journey
-    @deduct = true
+    current_journey.end(station)
+    # store_journey
+    # @deduct = true
   end
 
 
   def store_journey
-    @fare = @journey.complete? ? Oystercard::MIN_FARE : PEN_FARE
-    @log << @journey
-    @journey = nil
+    # @fare = @journey.complete? ? Journey::MIN_FARE : PEN_FARE
+    # @log << @journey
+    # @journey = nil
   end
 
-  def edge_case
-    current_journey
-    store_journey
-    @deduct = true
+  def double_touchin
+    # current_journey
+    # store_journey
+    # @deduct = true
   end
 
   def fare
-    @fare
+    # @fare
   end
 
-  def deduct?
-    @deduct
-  end
+  # def deduct?
+  #   @deduct
+  # end
 
 private
 
   def current_journey
-    return @journey || @journey = Journey.new
+    @journey || @journey = @journey_klass.new
   end
 
 end
